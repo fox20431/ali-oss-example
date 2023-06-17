@@ -34,11 +34,8 @@ const client = new OSS({
 app.get('/download', async (req, res) => {
     const objectName = 'abstract-background-love-heart-seamless-vector-pattern.webp'; // object name
     const object = await client.get(objectName);
-    const stream = fs.createWriteStream(objectName);
-    stream.once('open', () => {
-        res.write(object.content);
-        res.end();
-    });
+    res.write(object.content);
+    res.end()
 });
 
 app.listen(3500, () => {
